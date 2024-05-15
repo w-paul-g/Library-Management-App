@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -58,20 +60,24 @@ fun WelcomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ){
-
                     Text(
-                            text = """
-                                Welcome to Library Management App
-                                """.trimIndent(),
+                        text = """
+                            Welcome to 
+                            Library Management 
+                            App
+                            """.trimIndent(),
+                        style = LocalTextStyle.current.merge(
                             color = Color.White,
                             textAlign = TextAlign.Center,
                             fontSize = 40.sp,
                             fontWeight = FontWeight.ExtraBold,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp),
-                        )
-
+                            fontStyle = FontStyle.Normal,
+                            lineHeight = 64.sp,
+                        ),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                    )
                 }
             }
             Box(
