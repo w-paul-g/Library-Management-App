@@ -91,7 +91,7 @@ fun ManageBorrowedBooks(
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .blur(6.dp)
+                    .blur(300.dp)
             )
             Box(
                 modifier = Modifier

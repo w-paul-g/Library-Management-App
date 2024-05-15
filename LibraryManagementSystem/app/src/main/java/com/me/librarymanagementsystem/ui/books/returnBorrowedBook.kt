@@ -78,7 +78,7 @@ fun ReturnBorrowedBook(
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .blur(4.dp)
+                    .blur(300.dp)
             )
             Box(
                 modifier = Modifier.fillMaxSize(),

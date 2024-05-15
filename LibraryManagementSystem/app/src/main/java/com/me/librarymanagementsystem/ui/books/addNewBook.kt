@@ -103,7 +103,7 @@ fun AddNewBook(
                 contentDescription = "",
                 contentScale = ContentScale.Crop,
                 modifier = Modifier
-                    .blur(4.dp)
+                    .blur(300.dp)
             )
             Box(
                 modifier = Modifier
@@ -124,7 +124,9 @@ fun AddNewBook(
                         OutlinedTextField(
                             value = isbn,
                             onValueChange = {isbn = it},
-                            modifier = Modifier,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
                             label = {Text("ISBN")},
                             placeholder = {Text("Enter ISBN")}
                         )

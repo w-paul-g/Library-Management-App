@@ -75,7 +75,7 @@ fun WelcomeScreen(
                             fontWeight = FontWeight.ExtraBold,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(30.dp),
+                                .padding(10.dp),
                         )
                     }
                 }
