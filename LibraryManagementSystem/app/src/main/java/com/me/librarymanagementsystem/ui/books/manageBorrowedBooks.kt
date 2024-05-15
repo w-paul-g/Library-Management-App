@@ -60,7 +60,7 @@ fun ManageBorrowedBooks(
     val emptyBooksListState = remember {
         mutableStateListOf<Book>()
     }
-    val books = bookRepository.viewBooks(
+    val books = bookRepository.viewBorrowedBooks(
         emptyBookState,
         emptyBooksListState
     )

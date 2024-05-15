@@ -3,11 +3,13 @@ package com.me.librarymanagementsystem.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ModifierLocalBeyondBoundsLayout
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.me.librarymanagementsystem.data.AuthViewModel
 import com.me.librarymanagementsystem.ui.account.ForgotPassword
 import com.me.librarymanagementsystem.ui.account.SignIn
 import com.me.librarymanagementsystem.ui.account.SignOutAlert
@@ -25,8 +27,7 @@ import com.me.librarymanagementsystem.ui.welcome.WelcomeScreen
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUTE_WELCOME
-
+    startDestination: String
 ){
     NavHost(
         modifier = modifier,

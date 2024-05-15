@@ -39,30 +39,29 @@ class AuthViewModel(var navController: NavController, var context: Context) {
                     navController.navigate(ROUTE_SIGNUP)
                 }
             }
-
-
         }
-
         else{
             Toast.makeText(context, "Please fill in all the fields!", Toast.LENGTH_LONG).show()
         }
-
     }
 
-
-
     fun signIn(email: String, password: String, ) {
-        progress.show()
-        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
-            progress.dismiss()
-            if (it.isSuccessful){
-                Toast.makeText(context,"Successfully Logged in",Toast.LENGTH_LONG).show()
-                navController.navigate(ROUTE_HOME)
+        if (email.isNotBlank() && password.isNotBlank()){
+            progress.show()
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
+                progress.dismiss()
+                if (it.isSuccessful){
+                    Toast.makeText(context,"Successfully Logged in",Toast.LENGTH_LONG).show()
+                    navController.navigate(ROUTE_HOME)
 //                navController.navigate(ROUTE_REGISTER)TO TAKE YOU TO A DIFFERENT PAGE
-            }else{
-                Toast.makeText(context,"${it.exception!!.message}",Toast.LENGTH_LONG).show()
-                navController.navigate(ROUTE_SIGNIN)
+                }else{
+                    Toast.makeText(context,"${it.exception!!.message}",Toast.LENGTH_LONG).show()
+                    navController.navigate(ROUTE_SIGNIN)
+                }
             }
+        }
+        else{
+            Toast.makeText(context, "Please fill in all the fields!", Toast.LENGTH_LONG).show()
         }
     }
     fun signOut(){
@@ -75,14 +74,19 @@ class AuthViewModel(var navController: NavController, var context: Context) {
     }
 
     fun resetPassword(email: String){
-        mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
-            if (it.isSuccessful) {
-                // Password reset email sent successfully
-                Toast.makeText(context,"Password reset email sent successfully",Toast.LENGTH_LONG).show()
-                navController.navigate(ROUTE_SIGNIN)
-            } else {
-                // Password reset email could not be sent
-                Toast.makeText(context,"Password reset email could not be sent",Toast.LENGTH_LONG).show()
+        if (email.isBlank()) {
+            Toast.makeText(context,"Please enter your email",Toast.LENGTH_LONG).show()
+            return
+        }else{
+            mAuth.sendPasswordResetEmail(email).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    // Password reset email sent successfully
+                    Toast.makeText(context,"Password reset email sent successfully",Toast.LENGTH_LONG).show()
+                    navController.navigate(ROUTE_SIGNIN)
+                } else {
+                    // Password reset email could not be sent
+                    Toast.makeText(context,"Password reset email could not be sent",Toast.LENGTH_LONG).show()
+                }
             }
         }
 //

@@ -107,11 +107,7 @@ fun WelcomeScreen(
                         var account = AuthViewModel(navController, context)
                         Card(
                             onClick = {
-                                if(account.isSignedIn()){
-                                    navController.navigate(ROUTE_HOME)
-                                }else {
-                                    navController.navigate(ROUTE_SIGNIN)
-                                }
+                                navController.navigate(ROUTE_SIGNIN)
                             },
                             modifier = Modifier
                                 .padding(20.dp)

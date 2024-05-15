@@ -32,27 +32,36 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
     }
 
 
-    fun saveBook(title: String, author: String, isbn: String) {
+    fun saveBook(
+        title: String,
+        author: String,
+        isbn: String
+    ) {
         var id = System.currentTimeMillis().toString()
         var bookData = Book(title, author, isbn, id)
         var bookRef = FirebaseDatabase.getInstance().getReference()
             .child("Books/$id")
-        progress.show()
-        bookRef.setValue(bookData).addOnCompleteListener {
-            progress.dismiss()
-            if (it.isSuccessful) {
-                Toast.makeText(
-                    context,
-                    "Book added successfully!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    context,
-                    "ERROR: ${it.exception!!.message}",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
+        if (isbn.isEmpty() || title.isEmpty() || author.isEmpty()){
+            Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            return
+        }else{
+            progress.show()
+            bookRef.setValue(bookData).addOnCompleteListener {
+                progress.dismiss()
+                if (it.isSuccessful) {
+                    Toast.makeText(
+                        context,
+                        "Book added successfully!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        context,
+                        "ERROR: ${it.exception!!.message}",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
             }
         }
     }
@@ -62,26 +71,25 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
     ): SnapshotStateList<Book> {
         var ref = FirebaseDatabase.getInstance().getReference().child("Books")
 
-//        progress.show()
-        ref.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-//                progress.dismiss()
-                books.clear()
-                for (snap in snapshot.children) {
-                    val value = snap.getValue(Book::class.java)
-                    book.value = value!!
-                    books.add(value)
+        ref.addValueEventListener(
+            object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    books.clear()
+                    for (snap in snapshot.children) {
+                        val value = snap.getValue(Book::class.java)
+                        book.value = value!!
+                        books.add(value)
+                    }
+                }
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        context,
+                        error.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-
-            override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(
-                    context,
-                    error.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        })
+        )
         return books
     }
 
@@ -120,22 +128,27 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
             .child("Books/$id")
         progress.show()
         var updateData = Book(title, author, isbn, id)
-        updateRef.setValue(updateData).addOnCompleteListener {
-            progress.dismiss()
-            if (it.isSuccessful) {
-                Toast.makeText(
-                    context,
-                    "Update successful",
-                    Toast.LENGTH_SHORT
-                ).show()
-                navController.navigate(ROUTE_VIEW_BOOK)
-            } else {
-                Toast.makeText(
-                    context,
-                    it.exception!!.message,
-                    Toast.LENGTH_SHORT
-                ).show()
-                navController.navigate(ROUTE_VIEW_BOOK)
+        if (isbn.isEmpty() || title.isEmpty() || author.isEmpty()){
+            Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
+            return
+        } else {
+            updateRef.setValue(updateData).addOnCompleteListener {
+                progress.dismiss()
+                if (it.isSuccessful) {
+                    Toast.makeText(
+                        context,
+                        "Update successful",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.navigate(ROUTE_VIEW_BOOK)
+                } else {
+                    Toast.makeText(
+                        context,
+                        it.exception!!.message,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    navController.navigate(ROUTE_VIEW_BOOK)
+                }
             }
         }
     }
