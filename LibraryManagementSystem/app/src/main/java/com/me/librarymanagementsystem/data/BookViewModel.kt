@@ -124,14 +124,10 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
         isbn: String,
         id: String
     ) {
-        var updateRef = FirebaseDatabase.getInstance().getReference()
+        val updateRef = FirebaseDatabase.getInstance().getReference()
             .child("Books/$id")
         progress.show()
         var updateData = Book(title, author, isbn, id)
-        if (isbn.isEmpty() || title.isEmpty() || author.isEmpty()){
-            Toast.makeText(context, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            return
-        } else {
             updateRef.setValue(updateData).addOnCompleteListener {
                 progress.dismiss()
                 if (it.isSuccessful) {
@@ -150,7 +146,7 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
                     navController.navigate(ROUTE_VIEW_BOOK)
                 }
             }
-        }
+
     }
 
     fun borrowBook(
