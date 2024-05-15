@@ -29,7 +29,7 @@ class AuthViewModel(var navController: NavController, var context: Context) {
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
                 progress.dismiss()
                 if (it.isSuccessful) {
-                    Toast.makeText(context,"Succeffully Registered!",Toast.LENGTH_LONG).show()
+                    Toast.makeText(context,"Successfully Registered!",Toast.LENGTH_LONG).show()
                     navController.navigate(ROUTE_HOME)}
 //
                 // Sign up success, navigate to next screen or do something else
@@ -56,9 +56,9 @@ class AuthViewModel(var navController: NavController, var context: Context) {
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener {
             progress.dismiss()
             if (it.isSuccessful){
-                Toast.makeText(context,"Succeffully Logged in",Toast.LENGTH_LONG).show()
+                Toast.makeText(context,"Successfully Logged in",Toast.LENGTH_LONG).show()
                 navController.navigate(ROUTE_HOME)
-//                navController.navigate(ROUTE_REGISTER)TO TAKE YOU TO A DIIFFERNT PAGE
+//                navController.navigate(ROUTE_REGISTER)TO TAKE YOU TO A DIFFERENT PAGE
             }else{
                 Toast.makeText(context,"${it.exception!!.message}",Toast.LENGTH_LONG).show()
                 navController.navigate(ROUTE_SIGNIN)

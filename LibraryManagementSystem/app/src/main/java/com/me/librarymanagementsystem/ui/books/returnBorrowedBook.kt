@@ -15,6 +15,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -38,6 +39,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.me.librarymanagementsystem.R
 import com.me.librarymanagementsystem.data.BookViewModel
+import com.me.librarymanagementsystem.navigation.ROUTE_HOME
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -86,7 +88,7 @@ fun ReturnBorrowedBook(
             ){
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f),
+                        .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
@@ -104,7 +106,11 @@ fun ReturnBorrowedBook(
 
 @SuppressLint("RememberReturnType")
 @Composable
-fun ReturnBooksForm(onReturnBook: (String, String, String,String) -> Unit) {
+fun ReturnBooksForm(
+    onReturnBook: (String, String, String,String) -> Unit
+) {
+    val context = LocalContext.current
+    var navController = NavHostController(context)
     val bookTitleState = remember {
         mutableStateOf(
             TextFieldValue()
@@ -125,89 +131,103 @@ fun ReturnBooksForm(onReturnBook: (String, String, String,String) -> Unit) {
             TextFieldValue()
         )
     }
-    Column(
+    Card(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-
+            .fillMaxWidth(0.8f)
     ) {
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ){
-            OutlinedTextField(
-                value = bookTitleState.value,
-                onValueChange = { bookTitleState.value = it },
-                label = { Text("Book Title") },
+                .fillMaxSize()
+                .padding(16.dp)
+
+        ) {
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(10.dp)
-            )
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ){
-            OutlinedTextField(
-                value = authorState.value,
-                onValueChange = { authorState.value = it },
-                label = { Text("Author") },
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ){
-            OutlinedTextField(
-                value = isbnState.value,
-                onValueChange = { authorState.value = it },
-                label = { Text("ISBN") },
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ){
-            OutlinedTextField(
-                value = returnDateState.value,
-                onValueChange = { returnDateState.value = it },
-                label = { Text("Return Date") },
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Done
-                ),
-                keyboardActions = KeyboardActions(onDone = {
-                    onReturnBook(
-                        bookTitleState.value.text,
-                        authorState.value.text,
-                        isbnState.value.text,
-                        returnDateState.value.text
-                    )
-                }),
-                modifier = Modifier.fillMaxWidth()
-            )
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp)
-        ){
-            Button(
-                onClick = {
-                    onReturnBook(
-                        bookTitleState.value.text,
-                        authorState.value.text,
-                        isbnState.value.text,
-                        returnDateState.value.text
-                    )
-                }
             ) {
-                Text(text = "Return Book")
+                OutlinedTextField(
+                    value = bookTitleState.value,
+                    onValueChange = { bookTitleState.value = it },
+                    label = { Text("Book Title") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
+                OutlinedTextField(
+                    value = authorState.value,
+                    onValueChange = { authorState.value = it },
+                    label = { Text("Author") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
+                OutlinedTextField(
+                    value = isbnState.value,
+                    onValueChange = { authorState.value = it },
+                    label = { Text("ISBN") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
+                OutlinedTextField(
+                    value = returnDateState.value,
+                    onValueChange = { returnDateState.value = it },
+                    label = { Text("Return Date") },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(
+                        onDone = {
+                            onReturnBook(
+                                bookTitleState.value.text,
+                                authorState.value.text,
+                                isbnState.value.text,
+                                returnDateState.value.text
+                            )
+                        }
+                    ),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                )
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(10.dp)
+            ) {
+                Button(
+                    onClick = {
+                        onReturnBook(
+                            bookTitleState.value.text,
+                            authorState.value.text,
+                            isbnState.value.text,
+                            returnDateState.value.text
+                        )
+                        navController.navigate(ROUTE_HOME)
+                    }
+                ) {
+                    Text(text = "Return Book")
+                }
             }
         }
     }

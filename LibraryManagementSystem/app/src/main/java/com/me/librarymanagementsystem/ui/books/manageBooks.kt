@@ -39,6 +39,7 @@ import com.me.librarymanagementsystem.R
 import com.me.librarymanagementsystem.data.BookViewModel
 import com.me.librarymanagementsystem.models.Book
 import com.me.librarymanagementsystem.navigation.ROUTE_ADD_BOOK
+import com.me.librarymanagementsystem.navigation.ROUTE_HOME
 import com.me.librarymanagementsystem.navigation.ROUTE_UPDATE_BOOK
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,7 +78,7 @@ fun ManageBooks(
                 navigationIcon = {
                     IconButton(
                         onClick = {
-                            navController.navigateUp()
+                            navController.navigate(ROUTE_HOME)
                         }
                     ) {
                         Icon(
@@ -120,9 +121,15 @@ fun ManageBooks(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ){
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth(0.8f)
+                ) {
+
+                }
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f),
+                        .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ){

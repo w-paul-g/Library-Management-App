@@ -35,6 +35,7 @@ import androidx.navigation.NavHostController
 import com.me.librarymanagementsystem.R
 import com.me.librarymanagementsystem.data.BookViewModel
 import com.me.librarymanagementsystem.models.Book
+import com.me.librarymanagementsystem.navigation.ROUTE_HOME
 import com.me.librarymanagementsystem.navigation.ROUTE_UPDATE_BOOK
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,7 +70,7 @@ fun ManageBorrowedBooks(
                 title = { Text(text = "Borrowed Books") },
                 navigationIcon = {
                     IconButton(onClick = {
-                        navController.navigateUp()
+                        navController.navigate(ROUTE_HOME)
                     }) {
                         Icon(
                             imageVector = Icons.Filled.ArrowBack,

@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -30,6 +31,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.me.librarymanagementsystem.R
+import com.me.librarymanagementsystem.data.AuthViewModel
+import com.me.librarymanagementsystem.navigation.ROUTE_HOME
 import com.me.librarymanagementsystem.navigation.ROUTE_SIGNIN
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -100,9 +103,16 @@ fun WelcomeScreen(
                             .padding(20.dp),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
-                    ) {
+                    ) {var context = LocalContext.current
+                        var account = AuthViewModel(navController, context)
                         Card(
-                            onClick = { navController.navigate(ROUTE_SIGNIN) },
+                            onClick = {
+                                if(account.isSignedIn()){
+                                    navController.navigate(ROUTE_HOME)
+                                }else {
+                                    navController.navigate(ROUTE_SIGNIN)
+                                }
+                            },
                             modifier = Modifier
                                 .padding(20.dp)
                         ) {

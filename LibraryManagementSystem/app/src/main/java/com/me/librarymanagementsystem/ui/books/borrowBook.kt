@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -121,95 +122,100 @@ fun BorrowBook(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ){
-                Column(
+                Card(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ){
-                    Row(
+                        .fillMaxWidth(0.8f)
+                ) {
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = isbnState.value,
-                            onValueChange = {
-                                 isbnState.value = it
-                            },
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ){
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = isbnState.value,
+                                onValueChange = {
+                                    isbnState.value = it
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {
                                     Text(text = "ISBN")
-                            },
-                            placeholder = {
-                                Text(text = "Enter ISBN")
-                            }
-                        )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = bookTitleState.value,
-                            onValueChange = {
-                                 bookTitleState.value = it
-                            },
+                                },
+                                placeholder = {
+                                    Text(text = "Enter ISBN")
+                                }
+                            )
+                        }
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = bookTitleState.value,
+                                onValueChange = {
+                                    bookTitleState.value = it
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {
                                     Text(text = "Title")
-                            },
-                            placeholder = {
-                                Text(text = "Enter Title")
-                            }
-                        )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = authorState.value,
-                            onValueChange = {
-                                  authorState.value = it
-                            },
+                                },
+                                placeholder = {
+                                    Text(text = "Enter Title")
+                                }
+                            )
+                        }
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = authorState.value,
+                                onValueChange = {
+                                    authorState.value = it
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {
                                     Text(text = "Author")
-                            },
-                            placeholder = {
-                                Text(text = "Enter Author")
-                            }
-                        )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = borrowDateState.value,
-                            onValueChange = {
-                                 borrowDateState.value = it
-                            },
+                                },
+                                placeholder = {
+                                    Text(text = "Enter Author")
+                                }
+                            )
+                        }
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = borrowDateState.value,
+                                onValueChange = {
+                                    borrowDateState.value = it
+                                },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {
                                     Text(text = "Borrow Date")
-                            },
-                            placeholder = {
-                                Text(text = "Enter Borrow Date")
-                            }
-                        )
+                                },
+                                placeholder = {
+                                    Text(text = "Enter Borrow Date")
+                                }
+                            )
+                        }
                     }
                 }
             }

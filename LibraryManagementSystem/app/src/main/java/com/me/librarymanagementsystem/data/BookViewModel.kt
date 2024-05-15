@@ -18,14 +18,14 @@ import com.me.librarymanagementsystem.navigation.ROUTE_SIGNIN
 import com.me.librarymanagementsystem.navigation.ROUTE_VIEW_BOOK
 
 class BookViewModel(var navController: NavHostController, var context: Context) {
-    var authRepository: AuthViewModel
+//    var authRepository: AuthViewModel
     var progress: ProgressDialog
 
     init {
-        authRepository = AuthViewModel(navController, context)
-        if (!authRepository.isSignedIn()) {
-            navController.navigate(ROUTE_SIGNIN)
-        }
+//        authRepository = AuthViewModel(navController, context)
+//        if (!authRepository.isSignedIn()) {
+//            navController.navigate(ROUTE_SIGNIN)
+//        }
         progress = ProgressDialog(context)
         progress.setTitle("Loading")
         progress.setMessage("Please wait a moment...")

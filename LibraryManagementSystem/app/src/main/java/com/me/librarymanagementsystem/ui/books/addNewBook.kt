@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Check
+import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -78,7 +79,11 @@ fun AddNewBook(
                 actions = {
                     TextButton(
                         onClick = {
-                            bookRepository.saveBook(title.trim(), author.trim(), isbn.trim())
+                            bookRepository.saveBook(
+                                title.trim(),
+                                author.trim(),
+                                isbn.trim()
+                            )
                             navController.navigate(ROUTE_VIEW_BOOK)
                         },
                     ) {
@@ -110,56 +115,61 @@ fun AddNewBook(
                     .fillMaxSize(),
                 contentAlignment = Alignment.Center
             ){
-                Column(
+                Card (
                     modifier = Modifier
                         .fillMaxWidth(0.8f),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
                 ){
-                    Row(
+                    Column(
                         modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = isbn,
-                            onValueChange = {isbn = it},
+                            .fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ){
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {Text("ISBN")},
-                            placeholder = {Text("Enter ISBN")}
-                        )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = title,
-                            onValueChange = { title = it },
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = isbn,
+                                onValueChange = {isbn = it},
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {Text("ISBN")},
+                                placeholder = {Text("Enter ISBN")}
+                            )
+                        }
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {Text("Title")},
-                            placeholder = {Text("Enter Title")}
-                        )
-                    }
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ) {
-                        OutlinedTextField(
-                            value = author,
-                            onValueChange = { author = it },
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = title,
+                                onValueChange = { title = it },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {Text("Title")},
+                                placeholder = {Text("Enter Title")}
+                            )
+                        }
+                        Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(10.dp),
-                            label = {Text("Author")},
-                            placeholder = {Text("Enter Author")}
-                        )
+                                .padding(10.dp)
+                        ) {
+                            OutlinedTextField(
+                                value = author,
+                                onValueChange = { author = it },
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
+                                label = {Text("Author")},
+                                placeholder = {Text("Enter Author")}
+                            )
+                        }
                     }
                 }
             }
