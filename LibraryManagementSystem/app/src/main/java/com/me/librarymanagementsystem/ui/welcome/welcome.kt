@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -57,12 +58,8 @@ fun WelcomeScreen(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ){
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(10.dp)
-                    ){
-                        Text(
+
+                    Text(
                             text = """
                                 Welcome to 
                                 Library 
@@ -71,13 +68,13 @@ fun WelcomeScreen(
                                 """.trimIndent(),
                             color = Color.White,
                             textAlign = TextAlign.Center,
-                            fontSize = 36.sp,
+                            fontSize = 40.sp,
                             fontWeight = FontWeight.ExtraBold,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(10.dp),
                         )
-                    }
+
                 }
             }
             Box(
