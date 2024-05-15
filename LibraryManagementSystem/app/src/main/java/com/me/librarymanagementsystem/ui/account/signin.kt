@@ -55,7 +55,7 @@ fun SignIn(
             LargeTopAppBar(
                 title = {
                     Text(text = """
-                    Welcome Back Admin
+                    Welcome Back
                     PLease Sign In
                 """.trimIndent(),
                         color = MaterialTheme.colorScheme.onBackground,

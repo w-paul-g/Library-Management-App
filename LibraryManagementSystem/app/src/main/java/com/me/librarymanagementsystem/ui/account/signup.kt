@@ -56,7 +56,7 @@ fun SignUp(
                     title = {
                         Text(
                             text = """
-                                Welcome Admin
+                                Welcome
                                 PLease Sign Up
                             """.trimIndent(),
                             color = MaterialTheme.colorScheme.onBackground,
