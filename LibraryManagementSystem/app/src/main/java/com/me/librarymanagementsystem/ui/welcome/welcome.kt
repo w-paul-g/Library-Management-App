@@ -63,7 +63,8 @@ fun WelcomeScreen(
                     Text(
                         text = """
                             Welcome to 
-                            Library Management 
+                            Library 
+                            Management 
                             App
                             """.trimIndent(),
                         style = LocalTextStyle.current.merge(
