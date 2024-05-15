@@ -127,7 +127,7 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
         val updateRef = FirebaseDatabase.getInstance().getReference()
             .child("Books/$id")
         progress.show()
-        var updateData = Book(title, author, isbn, id)
+        val updateData = Book(title, author, isbn, id)
             updateRef.setValue(updateData).addOnCompleteListener {
                 progress.dismiss()
                 if (it.isSuccessful) {

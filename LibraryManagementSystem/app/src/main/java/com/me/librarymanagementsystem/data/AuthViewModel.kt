@@ -30,7 +30,8 @@ class AuthViewModel(var navController: NavController, var context: Context) {
                 progress.dismiss()
                 if (it.isSuccessful) {
                     Toast.makeText(context,"Successfully Registered!",Toast.LENGTH_LONG).show()
-                    navController.navigate(ROUTE_HOME)}
+                    navController.navigate(ROUTE_HOME)
+                }
 //
                 // Sign up success, navigate to next screen or do something else
                 else {
