@@ -95,11 +95,14 @@ fun ManageBorrowedBooks(
             )
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
             ){
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth(0.8f)
+                        .fillMaxWidth(0.8f),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
                 ){
                     LazyColumn(
                         modifier = Modifier

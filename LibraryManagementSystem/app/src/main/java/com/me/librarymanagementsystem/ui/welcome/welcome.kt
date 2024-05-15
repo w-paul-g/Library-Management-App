@@ -61,10 +61,7 @@ fun WelcomeScreen(
 
                     Text(
                             text = """
-                                Welcome to 
-                                Library 
-                                Management 
-                                System
+                                Welcome to Library Management App
                                 """.trimIndent(),
                             color = Color.White,
                             textAlign = TextAlign.Center,
@@ -124,6 +121,6 @@ fun WelcomeScreen(
     showSystemUi = true
 )
 @Composable
-fun Preview(){
+fun MyPreview(){
     WelcomeScreen(navController = rememberNavController())
 }
