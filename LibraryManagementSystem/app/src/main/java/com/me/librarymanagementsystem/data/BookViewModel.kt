@@ -128,7 +128,7 @@ class BookViewModel(var navController: NavHostController, var context: Context) 
             .child("Books/$id")
         progress.show()
         val updateData = Book(title, author, isbn, id)
-            updateRef.setValue(updateData).addOnCompleteListener {
+        updateRef.setValue(updateData).addOnCompleteListener {
                 progress.dismiss()
                 if (it.isSuccessful) {
                     Toast.makeText(
